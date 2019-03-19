@@ -1,28 +1,36 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { dispatchGetDeviceReadings } from './redux/actionCreators'
 
 class App extends Component {
+
+  componentDidMount() {
+    console.log('Component Did mount')
+    this.props.dispatchGetDeviceReadings()
+  }
+  componentWillReceiveProps(nextProps) {
+    const { deviceReadings } = nextProps
+    console.log('deviceReadings', deviceReadings)
+  }
   render() {
+    const { deviceReadings } = this.props
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        {deviceReadings.map((reading, index) => {
+          return (<h3>{reading.name}</h3>)
+        })}
       </div>
-    );
+    )
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  deviceReadings: state.deviceReadings
+})
+
+const mapDispatchToProps = {
+  dispatchGetDeviceReadings,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
+

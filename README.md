@@ -1,68 +1,39 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![relayrlogo](https://relayr.io/en/wp-content/uploads/sites/5/2014/03/relayr_logo_400px-1-1-1.png)
 
-## Available Scripts
+# Relayr Frontend Challenge
 
-In the project directory, you can run:
+## Our Expectations
 
-### `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This code challenge is based on the actual work we do here at Relayr. It's designed to see how you design and code a simple app based on real-world requirements.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+There's no time limit here, though we'd like to receive your solution within a week if possible. We expect a basic solution to take a couple of hours, but you're welcome to work on it longer if you'd like. 
 
-### `npm test`
+You're welcome to add some CSS styling, but there's no need to make the app very beautiful. We're mostly interested in how you implement the app's basic functionality.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Acceptance Criteria
 
-### `npm run build`
+You are building a React-based frontend interface for displaying data from and interacting with an IoT device. Once you're finished with the basic app, a user should be able to do the following:
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* **Retrieve the device's state** from the backend.
+* **Show each of the device's readings**: name, unit, value, timestamp, and active status.
+* **Show a counter** showing how many readings are active and how many are inactive.
+* **Implement a search input** that filters visible readings by name.
+* A user should also be able to **toggle the active status of each reading** by making the proper requests to the backend. After successfully changing the status on the backend, the UI should display the updated state of the active counter.
+ 
+Please the `API_DOCS.MD` file for information on the API endpoints available.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Extra Credit
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Finishing the above acceptance criteria is enough to submit the challenge, and we don't expect you to do any more. That said, you are welcome to implement anything further that you'd like and we'll keep it in mind. Again, extra work is not required at all: a good basic solution will be graded higher than an OK solution with more features. 
 
-### `npm run eject`
+## Getting started
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+To run the server locally: ```npm run start```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Prerequisites
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+To install dependencies: ```npm install```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Notes
+* We've set up a basic webpack configuration to serve files. Your code should hot reload, as should any styles you put in the `styles.css` file.
