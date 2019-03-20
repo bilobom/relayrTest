@@ -5,6 +5,7 @@ import rootReducer from './reducers'
 
 const initialState={
     deviceReadings:[],
+    info:[],
 }
 const store = createStore(rootReducer, initialState, applyMiddleware(thunk))
 export default store
