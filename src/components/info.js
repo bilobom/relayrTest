@@ -1,15 +1,18 @@
 import React from 'react';
 import {  Snackbar, IconButton } from '@material-ui/core';
 import { Close as CloseIcon} from '@material-ui/icons';
+import { connect } from "react-redux";
 
 
 
 class Info extends React.Component {
   state = {
     open: false,
+   
   };
+  
   componentWillReceiveProps(nextProps){
-    console.log('nextProps.info',nextProps.info)
+    this.setState({open:true})
   }
   handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -19,7 +22,7 @@ class Info extends React.Component {
   };
 
   render() {
-    const { info:{message} } = this.props;
+    const {message} = this.props.info;
     return (
       <div>
         
@@ -29,7 +32,7 @@ class Info extends React.Component {
             horizontal: 'left',
           }}
           open={this.state.open}
-          autoHideDuration={6000}
+          autoHideDuration={3000}
           onClose={this.handleClose}
           ContentProps={{
             'aria-describedby': 'message-id',
@@ -51,5 +54,9 @@ class Info extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  info: state.info
+});
 
-export default Info;
+
+export default connect(mapStateToProps)(Info);

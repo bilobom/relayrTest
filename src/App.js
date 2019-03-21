@@ -10,7 +10,7 @@ class App extends Component {
   state = {
     activeN: 0,
     searchName: "",
-    deviceReadings: []
+    deviceReadingsFiltered: []
   };
   //Retrieve the device's state, by dispatching the proper action
   componentDidMount() {
@@ -18,19 +18,18 @@ class App extends Component {
   }
   componentWillReceiveProps(nextProps) {
     //populate the local state, used for filtering later on
-    const { deviceReadings, info } = nextProps;
+    const { deviceReadings } = nextProps;
     this.setState({
       activeN: deviceReadings.reduce((accu, { active }) => accu + active, 0),
-      deviceReadings
+      deviceReadingsFiltered: deviceReadings
     });
-    console.log("infos", info);
   }
   handleSearch = ({ target: { value } }) => {
     const { deviceReadings } = this.props;
     this.setState({
       searchName: value,
       /*filtering the list of device readings by search */
-      deviceReadings: deviceReadings.filter(singleReading => {
+      deviceReadingsFiltered: deviceReadings.filter(singleReading => {
         return (
           singleReading.name.toLowerCase().search(value.toLowerCase()) !== -1
         );
@@ -38,8 +37,7 @@ class App extends Component {
     });
   };
   render() {
-    const { info } = this.props;
-    const { deviceReadings, activeN } = this.state;
+    const { deviceReadingsFiltered, activeN } = this.state;
     return (
       <div>
         <Grid container justify={"center"} alignItems={"center"} spacing={24}>
@@ -69,19 +67,19 @@ class App extends Component {
           </Grid>
           <Grid container justify={"center"} spacing={24}>
             {/***********list device readings  **************/}
-            {deviceReadings.map((singleReading, index) => {
+            {deviceReadingsFiltered.map((singleReading, index) => {
               return (
                 <Grid item xs={12} sm={4} md={3} key={index}>
-                  <SingleReading singleReading={singleReading} />
+                  <SingleReading singleReading={singleReading}/>
                 </Grid>
               );
             })}
           </Grid>
         </Grid>
         {/***********Show snackBar to inform the user **************/}
-        {info.map((item, index) => (
-          <Info key={index} info={item} />
-        ))}
+        
+            <Info/>
+    
       </div>
     );
   }
@@ -89,7 +87,6 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   deviceReadings: state.deviceReadings,
-  info: state.info
 });
 
 const mapDispatchToProps = {

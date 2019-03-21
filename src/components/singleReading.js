@@ -5,6 +5,9 @@ import { dispatchToggleState } from "../redux/actionCreators";
 import { Grid } from "@material-ui/core";
 
 export class singleReading extends Component {
+  state={
+    disabled:false,
+  }
   //toggling device reading state by dispatching the action,
   //The action shall make the appropiate call to the backend
   toggle = ({ target: { checked } }) => {
@@ -13,7 +16,16 @@ export class singleReading extends Component {
       dispatchToggleState
     } = this.props;
     dispatchToggleState(name, checked);
+    this.setState({
+      disabled:true,
+    })
   };
+  componentWillReceiveProps(nP){
+    if(nP.info.disabledRadioButton !== undefined)
+    this.setState({
+      disabled:nP.info.disabledRadioButton,
+    })
+  }
   render() {
     const {
       singleReading: { name, unit, value, timestamp, active },
@@ -44,6 +56,7 @@ export class singleReading extends Component {
               {/***********toggle State **************/}
               <Switch
                 checked={active}
+                disabled={this.state.disabled}
                 onChange={this.toggle}
                 value="checked"
                 color="primary"
@@ -63,6 +76,9 @@ export class singleReading extends Component {
 const mapDispatchToProps = {
   dispatchToggleState
 };
+const mapStateToProps = state => ({
+  info: state.info
+});
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -83,6 +99,6 @@ const styles = theme => ({
   }
 });
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(withStyles(styles)(singleReading));

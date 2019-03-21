@@ -9,10 +9,10 @@ const deviceReadingsReducer = (state = [], action) => {
   }
 };
 
-const infoReducer = (state = [], action) => {
+const infoReducer = (state = {}, action) => {
   switch (action.type) {
     case "INFO":
-      return [...state, action.payload];
+      return action.payload;
     default:
       return state;
   }
