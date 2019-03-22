@@ -4,7 +4,7 @@ import { dispatchGetDeviceReadings } from "./redux/actionCreators";
 import Grid from "@material-ui/core/Grid";
 import SingleReading from "./components/singleReading";
 import Info from "./components/info";
-import { TextField ,Chip } from "@material-ui/core";
+import { TextField, Chip, withStyles, Typography } from "@material-ui/core";
 
 class App extends Component {
   state = {
@@ -39,9 +39,13 @@ class App extends Component {
   render() {
     const { deviceReadingsFiltered, activeN } = this.state;
     return (
-      <div>
-        <Grid container justify={"center"} alignItems={"center"} spacing={24}>
+      <div className={this.props.classes.main}>
+        
+        <Grid container justify={"center"} alignItems={"center"} flexDirection={'row'} spacing={24}>
           {/***********Search text Field **************/}
+          <Typography variant="h3" gutterBottom>
+            welcome to device readings
+          </Typography>
           <Grid item md={6}>
             <TextField
               required
@@ -62,24 +66,22 @@ class App extends Component {
           </Grid>
           <Grid item>
             <Chip
-              label={activeN+" active readings "}
+              label={activeN + " active readings "}
             />
           </Grid>
           <Grid container justify={"center"} spacing={24}>
             {/***********list device readings  **************/}
             {deviceReadingsFiltered.map((singleReading, index) => {
               return (
-                <Grid item xs={12} sm={4} md={3} key={index}>
-                  <SingleReading singleReading={singleReading}/>
+                <Grid item xs={12} sm={4} md={4} key={index}>
+                  <SingleReading singleReading={singleReading} />
                 </Grid>
               );
             })}
           </Grid>
         </Grid>
         {/***********Show snackBar to inform the user **************/}
-        
-            <Info/>
-    
+        <Info />
       </div>
     );
   }
@@ -92,8 +94,22 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   dispatchGetDeviceReadings
 };
+const styles = theme => ({
+  main: {
+    width: 'auto',
+    display: 'block',
+    marginLeft: theme.spacing.unit * 3,
+    marginRight: theme.spacing.unit * 3,
+    [theme.breakpoints.up(800 + theme.spacing.unit * 3 * 2)]: {
+      width: 800,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      marginTop:50
+    },
+  },
 
+});
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(App);
+)(withStyles(styles)(App));

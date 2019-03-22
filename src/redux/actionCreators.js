@@ -9,7 +9,7 @@ export const dispatchGetDeviceReadings = () => async dispatch => {
   } catch (error) {
     dispatch(
       info({
-        message: "Error retieving device Readings"
+        message: "Retieving device Readings went Wrong"
       })
     );
   }
