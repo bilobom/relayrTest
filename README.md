@@ -3,7 +3,7 @@
 
 ### Folder Structure
 
-
+.
 ├── src                             # source root
 │    ├── api-client                  # API end point for the client
 │    ├── App.js                      # Main App Stack
