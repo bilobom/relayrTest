@@ -23,3 +23,14 @@
                                            # ----> dispatchToggleState
                                            # ----> info
 
+### Description
+
+1. Altought this app doesn't need a redux store, I wanted to showcase the state management should this app scale.
+2. I used react-creat-app instead of the original babel & webpack configuration to make my life easier :) `it has some probelms with redux.
+3. In package.json there is, "proxy": "http://127.0.0.1:8888" for api calls.
+4. In package.json "start": "react-scripts start | node ./api-server.js" starting two command by piping.
+
+### Instruction
+
+1. npm install
+2. npm run start
