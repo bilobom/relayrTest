@@ -1,5 +1,6 @@
 
 # Relayr Frontend Challenge
+![alt text](https://raw.githubusercontent.com/bilobom/relayrTest/master/public/screenShot.png)
 
 ### Folder Structure
 
